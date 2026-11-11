@@ -1,0 +1,20 @@
+{
+  "name": "orubrand",
+  "interface": {
+    "displayName": "Orubrand"
+  },
+  "plugins": [
+    {
+      "name": "oru",
+      "source": {
+        "source": "local",
+        "path": "./plugins/oru"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "orubrand": {
+      "type": "streamable-http",
+      "url": "https://orubrand-engine-256639630693.us-west1.run.app/mcp"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "oru",
+  "description": "Oru for Orubrand: your team's shared brain for business, brand and design. Connects the Orubrand MCP server, keeps Oru in the lead on every task, bridges Figma and your connected Drive, Microsoft 365 and Slack, keeps your company file server in a project (Oru Connect), and saves your agent conversations.",
+  "version": "0.1.4-qa.202611110221",
+  "author": {
+    "name": "Orubrand"
+  },
+  "userConfig": {
+    "oru_url": {
+      "type": "string",
+      "title": "Orubrand address",
+      "description": "Leave as is. Change it only to point at another Orubrand, such as a local one (http://localhost:8787). It is the address that serves /mcp, /context and /agent-sessions.",
+      "default": "https://orubrand-engine-256639630693.us-west1.run.app"
+    },
+    "save_conversations": {
+      "type": "boolean",
+      "title": "Save conversations",
+      "description": "Save this agent's conversations (your messages and its replies, without tool output or secrets) to your private chat in Orubrand, so Oru learns from them. Turn off to stop.",
+      "default": true
+    },
+    "api_token": {
+      "type": "string",
+      "title": "Orubrand access key",
+      "description": "Optional. Leave empty: once you sign in from /mcp > orubrand > Authenticate, Oru links this machine and its hooks get their own key. Set one here only to use a key you made in Orubrand > Connect your agent.",
+      "sensitive": true
+    }
+  }
+}

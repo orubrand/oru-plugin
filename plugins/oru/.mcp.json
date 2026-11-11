@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "orubrand": {
+      "type": "http",
+      "url": "${user_config.oru_url}/mcp"
+    },
+    "oru-connect": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/connect/oru-connect.mjs"],
+      "env": {
+        "ORUBRAND_URL": "${user_config.oru_url}"
+      }
+    }
+  }
+}
