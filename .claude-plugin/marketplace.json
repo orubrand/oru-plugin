@@ -1,6 +1,6 @@
 {
   "name": "orubrand",
-  "description": "Oru for Orubrand: your team's shared brain for business, brand and design, in every coding agent.",
+  "description": "Oru: your team's shared brain for business, brand and design, in every coding agent.",
   "owner": {
     "name": "Orubrand"
   },
@@ -8,7 +8,7 @@
     {
       "name": "oru",
       "source": "./plugins/oru",
-      "description": "Connects Orubrand, keeps Oru in the lead on every task, bridges Figma and your connected sources, keeps your company file server in a project (Oru Connect), and saves your agent conversations."
+      "description": "Connects Oru, keeps Oru in the lead on every task, bridges Figma and your connected sources, keeps your company file server in a project (Oru Connect), and saves your agent conversations."
     }
   ]
 }

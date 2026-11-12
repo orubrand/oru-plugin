@@ -40,10 +40,10 @@ async function link(code, url) {
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ code }),
     signal: AbortSignal.timeout(15_000),
-  }).catch((error) => fail(`Orubrand could not be reached at ${base}: ${error.message}`));
+  }).catch((error) => fail(`Oru could not be reached at ${base}: ${error.message}`));
   const body = await response.json().catch(() => null);
   if (!response.ok || typeof body?.token !== 'string')
-    fail(body?.error?.message ?? `Orubrand refused the code (${response.status}).`);
+    fail(body?.error?.message ?? `Oru refused the code (${response.status}).`);
   writePrivate(KEY_FILE, `${body.token}\n`);
   if (url) writePrivate(URL_FILE, `${base}\n`);
   // The key is never printed: it stays in ~/.oru/key, readable only by its owner.
@@ -56,7 +56,7 @@ if (command === 'status') {
 } else if (command === 'set-key') {
   const key = readFileSync(0, 'utf8').trim();
   if (!/^orb_[A-Za-z0-9_-]{10,}$/.test(key))
-    fail('Pipe in an Orubrand access key (it starts with orb_): printf %s "$KEY" | node oru.mjs set-key');
+    fail('Pipe in an Oru access key (it starts with orb_): printf %s "$KEY" | node oru.mjs set-key');
   writePrivate(KEY_FILE, `${key}\n`);
   print({ keySet: true });
 } else if (command === 'link') {

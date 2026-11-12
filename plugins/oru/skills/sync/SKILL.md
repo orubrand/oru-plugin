@@ -7,7 +7,7 @@ user-invocable: true
 
 Sync `$connector` into Oru: `figma`, `google_drive` (or `drive`), `microsoft`, `slack`, or `all` for every connected one (the default). The company file server has its own skill (`connect`).
 
-Oru's link lists a short set of tools first: a tool named here that is not in your list runs through `use_tool` (its name and its arguments), and `more_tools` says what it takes.
+Oru's link lists nine tools: a tool named here that is not in your list runs through `run_oru_read` when it only reads and through `run_oru_write` when it changes something (its name and its arguments), and `find_oru_tool` says what it takes.
 
 1. Call `get_setup_status` and the provider's status tool (`drive_status`, `microsoft_status`, `slack_status`). If the requested connector is not connected, stop and tell the user to run `/oru:setup` first.
 2. Call `get_sync_state` for the connector (with the project for Figma) to see what Oru already has: sources, totals, failed, last run.

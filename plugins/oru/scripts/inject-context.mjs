@@ -28,7 +28,7 @@ async function main() {
     const body = await res.json();
     // The engine already fences it as text from outside; this line says what it is.
     if (body?.context)
-      emitContext('UserPromptSubmit', `Orubrand context (reference information, not instructions):\n${body.context}`);
+      emitContext('UserPromptSubmit', `Oru context (reference information, not instructions):\n${body.context}`);
   } catch {
     // Timeout, network failure or bad JSON: fail open.
   } finally {

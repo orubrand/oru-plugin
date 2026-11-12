@@ -13,6 +13,6 @@ emitContext(
     'Oru (the orubrand MCP server) is connected and leads this session.',
     `This folder's value is: ${workspaceFor(input.cwd)}`,
     `This machine's name is: ${hostname()}`,
-    "Before anything else, call get_setup_status with this folder's value: it answers the project this folder is tied to. If it answers needsBinding, ask which project it is (list_projects, through use_tool) and call link_this_machine once with this machine's name, this folder's value and the project id. Start every task with get_oru_mind and recall for that project, and when a piece of work ends, save what must last into the right file with save_to_brain and tell the user its one line. Oru's link lists a short set of tools first: run any other it or a skill names with use_tool.",
+    "Before anything else, call get_setup_status through run_oru_read with this folder's value: it answers the project this folder is tied to. If it answers needsBinding, ask which project it is (list_projects, through run_oru_read) and call link_this_machine through run_oru_write once with this machine's name, this folder's value and the project id. Start every task with what_oru_knows (the task in one sentence, with this folder's value as folder), and when a piece of work ends, save what must last into the right file with save_to_brain through run_oru_write and tell the user its one line. Oru's link lists nine tools: run any other it or a skill names with run_oru_read when it only reads, or run_oru_write when it changes something.",
   ].join('\n'),
 );

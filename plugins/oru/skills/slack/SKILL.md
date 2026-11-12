@@ -5,7 +5,7 @@ description: Connect the user's own Slack to Oru and let Oru learn from the publ
 
 # Slack
 
-Oru's link lists a short set of tools first: a tool named here that is not in your list runs through `use_tool` (its name and its arguments), and `more_tools` says what it takes.
+Oru's link lists nine tools: a tool named here that is not in your list runs through `run_oru_read` when it only reads and through `run_oru_write` when it changes something (its name and its arguments), and `find_oru_tool` says what it takes.
 
 Oru reads Slack itself, as the person who signed in, public channels only. No script and no Slack MCP connector here.
 

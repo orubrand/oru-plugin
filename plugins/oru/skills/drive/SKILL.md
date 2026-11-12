@@ -5,7 +5,7 @@ description: Connect the user's own Google Drive to Oru and let Oru read, search
 
 # Google Drive
 
-Oru's link lists a short set of tools first: a tool named here that is not in your list runs through `use_tool` (its name and its arguments), and `more_tools` says what it takes.
+Oru's link lists nine tools: a tool named here that is not in your list runs through `run_oru_read` when it only reads and through `run_oru_write` when it changes something (its name and its arguments), and `find_oru_tool` says what it takes.
 
 Oru reads Drive itself, as the person who signed in, with read-only access. There is no script on this machine and no Google sign-in here: the agent only calls Oru's tools.
 
