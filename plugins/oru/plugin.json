@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "oru",
-  "version": "0.1.4-qa.202611110221",
+  "version": "0.1.4-qa.202611120456",
   "description": "Oru for Orubrand: your team's shared brain for business, brand and design. Connects the Orubrand MCP server, keeps Oru in the lead on every task, bridges Figma and your connected Drive, Microsoft 365 and Slack, and keeps your company file server in a project (Oru Connect).",
   "author": {
     "name": "Orubrand",

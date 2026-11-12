@@ -1,7 +1,7 @@
 {
   "name": "oru",
   "description": "Oru for Orubrand: your team's shared brain for business, brand and design. Connects the Orubrand MCP server, keeps Oru in the lead on every task, bridges Figma and your connected Drive, Microsoft 365 and Slack, keeps your company file server in a project (Oru Connect), and saves your agent conversations.",
-  "version": "0.1.4-qa.202611110221",
+  "version": "0.1.4-qa.202611120456",
   "author": {
     "name": "Orubrand"
   },
@@ -21,7 +21,7 @@
     "api_token": {
       "type": "string",
       "title": "Orubrand access key",
-      "description": "Optional. Leave empty: once you sign in from /mcp > orubrand > Authenticate, Oru links this machine and its hooks get their own key. Set one here only to use a key you made in Orubrand > Connect your agent.",
+      "description": "Optional. Leave empty: once you sign in (claude mcp login plugin:oru:orubrand, or /mcp > plugin:oru:orubrand > Authenticate), Oru links this machine and its hooks get their own key. Set one here only to use a key you made in Orubrand > Connect your agent.",
       "sensitive": true
     }
   }

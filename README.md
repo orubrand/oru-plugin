@@ -6,18 +6,16 @@ off), skills, and Oru Connect for your company's file server.
 
 ## Install in Claude Code
 
-```bash
-claude plugin marketplace add orubrand/oru-plugin && claude plugin install oru@orubrand
-```
-
-Then sign in to Orubrand, once:
+One line installs the plugin and signs you in to Orubrand:
 
 ```bash
-claude mcp login plugin:oru:orubrand
+claude plugin marketplace add orubrand/oru-plugin && claude plugin install oru@orubrand && claude mcp login plugin:oru:orubrand
 ```
 
-Your browser opens Orubrand: sign in and allow it. In Claude Code you can do the same from `/mcp`: pick
-`plugin:oru:orubrand` and choose Authenticate. Oru then links this machine, so the hooks need no key.
+Your browser opens Orubrand: sign in and allow it. In Claude Code you can sign in from `/mcp` instead: pick
+`plugin:oru:orubrand` and choose Authenticate. Oru then links this machine, so the hooks need no key. Claude Code
+may say that the plugin's options are not set yet: their defaults are used, and you change them only to point at
+another Orubrand or to stop saving conversations. Running the line again changes nothing.
 
 ## Only the MCP server
 
@@ -34,5 +32,5 @@ This build talks to `https://orubrand-engine-256639630693.us-west1.run.app`. To 
 
 ## Where it comes from
 
-Version `0.1.4-qa.202611110221`, built from `orubrand/orubrand@2784c43bced2` (`plugins/oru`).
+Version `0.1.4-qa.202611120456`, built from `orubrand/orubrand@42c2227b3fa2` (`plugins/oru`).
 This repository is published automatically: changes made here are overwritten.
