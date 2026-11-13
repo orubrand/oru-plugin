@@ -32,5 +32,5 @@ This build talks to `https://orubrand-engine-256639630693.us-west1.run.app`. To 
 
 ## Where it comes from
 
-Version `0.1.5-qa.202611130300`, built from `orubrand/orubrand@7ec4f79b17d1` (`plugins/oru`).
+Version `0.1.5-qa.202611130445`, built from `orubrand/orubrand@d9efe77737d9` (`plugins/oru`).
 This repository is published automatically: changes made here are overwritten.
