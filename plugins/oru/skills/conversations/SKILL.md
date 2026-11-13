@@ -8,7 +8,7 @@ user-invocable: true
 
 Oru's link lists nine tools: a tool named here that is not in your list runs through `run_oru_read` when it only reads and through `run_oru_write` when it changes something (its name and its arguments), and `find_oru_tool` says what it takes.
 
-While the oru plugin has an access key, every Claude Code session is saved to the user's **private** chat for the folder's project in orubrand.com. Oru learns from what the user says there, the same way it learns from its own chat. What is saved: the user's messages and the agent's replies, with one line per action ("→ Edit app/Login.tsx", "→ Bash npm test"). Never tool output or file contents, and secrets are stripped on this machine before anything is sent (and again by Oru).
+While the oru plugin has an access key, every Claude Code session is saved to the user's **private** chat for the folder's project in orubrand.com. Oru learns from it through the agent that uses it, never on a model of its own: when `what_oru_knows` (or the context Oru adds to a prompt) says conversations wait to be learned from, call `conversations_to_learn` through `run_oru_read`, keep what should last with `remember` (with the conversation's id), and mark each with `learned_from_conversation` through `run_oru_write`. When you are not sure something should last, ask the user first. What is saved: the user's messages and the agent's replies, with one line per action ("→ Edit app/Login.tsx", "→ Bash npm test"). Never tool output or file contents, and secrets are stripped on this machine before anything is sent (and again by Oru).
 
 The command: `node "${CLAUDE_PLUGIN_ROOT}/scripts/oru.mjs" <command>`. Every command prints JSON.
 
