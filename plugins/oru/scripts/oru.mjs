@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // The plugin's small command, for the conversations skill. Every command prints JSON.
 //
-//   oru.mjs status                    key set? saving conversations on? which Orubrand?
+//   oru.mjs status                    key set? saving conversations on? which Orubrand? what has not reached it, and why?
 //   oru.mjs link <code> [--url <url>]  trades the one-time code link_this_machine gave the agent for the hooks' key
 //   oru.mjs set-key                   reads an Orubrand access key from stdin into ~/.oru/key (0600)
 //   oru.mjs logout                    forgets that key
@@ -10,9 +10,18 @@
 //
 // The agent signs in to Orubrand (OAuth) for the MCP connection; its hooks get their own key from that sign-in
 // with `link` (ADR 0134), so the person pastes nothing. The key is written to ~/.oru/key and never printed.
-import { existsSync, readFileSync, rmSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
-import { KEY_FILE, oruKey, oruUrl, SESSIONS_DIR, savingConversations, URL_FILE, writePrivate } from './oru-auth.mjs';
+import {
+  KEY_FILE,
+  oruKey,
+  oruUrl,
+  readJson,
+  SESSIONS_DIR,
+  savingConversations,
+  URL_FILE,
+  writePrivate,
+} from './oru-auth.mjs';
 
 const print = (value) => process.stdout.write(`${JSON.stringify(value, null, 2)}\n`);
 
@@ -51,8 +60,32 @@ async function link(code, url) {
 }
 
 const [command, arg, ...rest] = process.argv.slice(2);
+/**
+ * The sessions whose last send failed in the last thirty days, newest first, with why (ADR 0355): kept on this machine
+ * and sent again on the next reply, so "saved" is never said of them. A folder tied to no project is the usual why.
+ */
+function notReachingOru() {
+  if (!existsSync(SESSIONS_DIR)) return [];
+  const since = Date.now() - 30 * 24 * 60 * 60_000;
+  return readdirSync(SESSIONS_DIR)
+    .filter((name) => /^[A-Za-z0-9._:-]{1,120}\.json$/.test(name) && !name.endsWith('.untied.json'))
+    .flatMap((name) => {
+      const state = readJson(join(SESSIONS_DIR, name));
+      const at = Date.parse(state?.lastErrorAt ?? '');
+      return state?.lastError && at >= since
+        ? [{ sessionId: name.slice(0, -'.json'.length), error: String(state.lastError), at: state.lastErrorAt }]
+        : [];
+    })
+    .sort((a, b) => Date.parse(b.at) - Date.parse(a.at));
+}
+
 if (command === 'status') {
-  print({ keySet: Boolean(oruKey()), oru: oruUrl(), savingConversations: savingConversations() });
+  print({
+    keySet: Boolean(oruKey()),
+    oru: oruUrl(),
+    savingConversations: savingConversations(),
+    notReachingOru: notReachingOru(),
+  });
 } else if (command === 'set-key') {
   const key = readFileSync(0, 'utf8').trim();
   if (!/^orb_[A-Za-z0-9_-]{10,}$/.test(key))

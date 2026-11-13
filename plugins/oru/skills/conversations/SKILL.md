@@ -14,7 +14,7 @@ The command: `node "${CLAUDE_PLUGIN_ROOT}/scripts/oru.mjs" <command>`. Every com
 
 | Command | What it does |
 |---|---|
-| `status` | `keySet`, which Oru server, and whether `savingConversations` is on |
+| `status` | `keySet`, which Oru server, whether `savingConversations` is on, and `notReachingOru`: the sessions whose last send failed, and why |
 | `link <code> --url <url>` | Trades the one-time code `link_this_machine` returned for the hooks' key, kept in `~/.oru/key` (readable only by the user) and never printed |
 | `set-key` | Only for a key the user made themselves: reads it from stdin into `~/.oru/key` |
 | `logout` | Forgets that key |
@@ -23,7 +23,7 @@ The command: `node "${CLAUDE_PLUGIN_ROOT}/scripts/oru.mjs" <command>`. Every com
 
 ## Connect (from setup)
 
-1. Run `status`. Key set and saving on: show "Claude Code conversations: saved to Oru".
+1. Run `status`. Key set, saving on and `notReachingOru` empty: show "Claude Code conversations: saved to Oru". A session in `notReachingOru` did not reach Oru: say so with its why. When the why is that the folder is tied to no project, nothing is lost (it waits on this machine and is sent once the folder is tied): ask the person which project it is (`list_projects` through `run_oru_read`) and tie it with `link_this_machine` through `run_oru_write`.
 2. No key: it is the same Oru account the agent already signed in with, so do it without asking. Call `link_this_machine` with this machine's name (and the folder and project, when you know them): it answers with `hooksKey`, a one-time code good for five minutes, and the `url` to trade it at. Run `node "${CLAUDE_PLUGIN_ROOT}/scripts/oru.mjs" link <code> --url <url>` right away, then `status` again. Never show or repeat the code to the user. The key it makes is listed in Oru under Connect your agent ("Oru plugin on <machine>"), where the user can revoke it.
 3. If `hooksKey` is null, this agent connected with an access key: the hooks use that same key, from the plugin's **Oru access key** option or `ORUBRAND_TOKEN`. Say so; never ask for the key in the chat.
 4. Saving off: it was turned off in the plugin's **Save conversations** option; say so and leave it.
@@ -34,5 +34,5 @@ When the user asks not to save the conversation (or part of it): find this sessi
 
 ## Rules
 
-- Never claim a conversation was saved if `status` says otherwise.
+- Never claim a conversation was saved if `status` says otherwise, or lists it in `notReachingOru`.
 - The conversation lives in the user's private chat; teammates do not see it. Only the memories Oru learns follow the team's normal review.
